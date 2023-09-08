@@ -1,0 +1,131 @@
+{
+   "swagger": "2.0",
+   "info": {
+       "version": "1.0.0",
+       "title": "My Surf Break Project CRUD",
+       "description": "My User Project Application API",
+       "license": {
+           "name": "MIT",
+           "url": "https://opensource.org/licenses/MIT"
+       }
+   },
+   "host": "localhost:4000",
+   "basePath": "/",
+   "tags": [
+       {
+           "name": "Breaks",
+           "description": "API for users in the system"
+       }
+   ],
+   "schemes": ["http"],
+   "consumes": ["application/json"],
+   "produces": ["application/json"],
+   
+   "paths": {
+       "/breaks": {
+           "get": {
+               "tags": ["Breaks"],
+               "summary": "Get all Breaks in the system",
+               "responses": {
+                   "200": {
+                       "description": "OK",
+                       "schema": {
+                           "$ref": "#/definitions/Break"
+                       }
+                   }
+               }
+           }
+       },
+       "/break": {
+           "post": {
+               "tags": ["Breaks"],
+               "summary": "Add a break to the system",
+               "parameters": [
+                   {
+                       "name": "break",
+                       "in": "body",
+                       "description": "Surf break that we want to create",
+                       "schema": {
+                           "$ref": "#/definitions/Break"
+                       }
+                   }
+               ],
+               "produces": ["application/json"],
+               "responses": {
+                   "200": {
+                       "description": "New surf break is created",
+                       "schema": {
+                           "$ref": "#/definitions/Break"
+                       }
+                     }
+                  }
+               }
+           },
+           "/break/{id}": {
+            "delete": {
+               "tags": ["Breaks"],
+               "summary": "Delete a break by ID",
+               "parameters": [
+                  {
+                      "name": "id",
+                      "in": "path",
+                      "description": "ID of the break to delete",
+                      "required": true,
+                      "type": "integer"
+                  }
+              ],
+               "responses": {
+                   "204": {
+                       "description": "Surf break deleted"
+                   },
+                   "404": {
+                       "description": "Surf break not found"
+                   }
+               }
+            },
+            "put": {
+              "tags": ["Breaks"],
+              "summary": "Update a break by ID",
+              "parameters": [
+               {
+                  "name": "id",
+                  "in": "path",
+                  "description": "ID of break to update",
+                  "required": true,
+                  "type": "integer"
+               },
+               {
+                  "name": "break",
+                  "in": "body",
+                  "description": "Updated break data",
+                  "schema": {
+                     "$ref": "#/definitions/Break"
+                  }
+               }
+              ],
+              "responses": {
+                  "200": {
+                     "description": "Break updated succesfully"
+                  },
+                  "404": {
+                     "description": "Break not found"
+                  }
+              }
+            }
+         }
+      },
+      "definitions": {
+       "Break": {
+           "required": ["id", "name"],
+           "properties": {
+               "id": {
+                   "type": "integer",
+                   "uniqueItems": true
+               },
+               "name": {
+                   "type": "string"
+               }
+           }
+       }
+   }
+}
