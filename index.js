@@ -7,6 +7,13 @@ var breaks = [
     { id: 1, name: "kalama bowls" },
     { id: 2, name: "launiupoko" },
     { id: 3, name: "thousand peaks" },
+    { id: 4, name: "s-turns" },
+    { id: 5, name: "grandmas" },
+    { id: 6, name: "honolua bay" },
+    { id: 7, name: "kings reef" },
+    { id: 8, name: "peahi" },
+    { id: 9, name: "shark pit" },
+    { id: 10, name: "kanaha" }
 ];
 
 const app = express();
